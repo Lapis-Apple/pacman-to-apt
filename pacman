@@ -16,9 +16,9 @@
 action="$1"
 object="$2"
 if [ $action == "-S" ]; then
-apt-get install $object
+apt-get install $*
 elif [ $action == "-R" ]; then
-apt-get remove $object
+apt-get remove $*
 elif [ $action == "-U" ]; then
 dpkg -i $object
 elif [ $action == "-A" ]; then
@@ -27,10 +27,12 @@ elif [ $action == "-Sy" ]; then
 apt-get update
 elif [ $action == "-Syu" ]; then
 apt-get update && apt-get dist-upgrade
+elif [ $action == "-Syyu" ]; then
+apt-get update && apt-get dist-upgrade
 elif [ $action == "-Su" ]; then
 apt-get dist-upgrade
 elif [ $action == "-Ss" ]; then
-apt-cache search $object
+apt-cache search $*
 elif [ $action == "-Rs" ]; then
 apt-get remove --purge $object && apt-get autoremove
 elif [ $action == "-Sc" ]; then
@@ -46,5 +48,5 @@ elif [ $action == "--about" ]; then
 echo -e "This program is free software: you can redistribute it and/or modify\nit under the terms of the GNU General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or\n(at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License\nalong with this program.  If not, see <http://www.gnu.org/licenses/>.\n\nThis bash script was created for fun by Gabriele Musco\nVisit my website: https://gabmus.github.io/"
 
 else
-echo "Error"
+echo "Invaild command: $*."
 fi
